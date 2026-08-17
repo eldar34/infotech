@@ -31,20 +31,19 @@ services:
         networks:
             - techlocal_network    
     db:
-        image: 'mysql:8.4' 
+        image: 'postgres:17'
         container_name: ${CONTAINER_NAME:-techlocal}-db
         restart: ${CONTAINER_MODE:-unless-stopped}
         environment:
-            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}' 
-            MYSQL_DATABASE: '${DB_DATABASE}'
-            MYSQL_USER: '${DB_USERNAME}'
-            MYSQL_PASSWORD: '${DB_PASSWORD}'
+            POSTGRES_PASSWORD: '${DB_PASSWORD}'
+            POSTGRES_DB:  '${DB_DATABASE}'
+            POSTGRES_USER: '${DB_USERNAME}'
         volumes:
-            - '${DB_DATA_STORAGE}:/var/lib/mysql'
+            - '${DB_DATA_STORAGE}:/var/lib/postgresql/data'
         ports:
-            - '${DB_PORT:-3306}:3306'
+            - '${DB_PORT:-5432}:5432'
         networks:
-            - techlocal_network
+            - techlocal_network 
 
 networks:
   techlocal_network:

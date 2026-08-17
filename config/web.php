@@ -39,7 +39,7 @@ $config = [
             'db' => 'db', // Компонент подключения к БД
             'tableName' => '{{%queue}}', // Имя таблицы в БД
             'mutex' => [
-                'class' => \yii\mutex\MysqlMutex::class,
+                'class' => \yii\mutex\PgsqlMutex::class,
             ],
         ],
         'cache' => [

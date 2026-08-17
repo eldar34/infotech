@@ -7,7 +7,7 @@ return [
              ';dbname=' . ($_ENV['DB_DATABASE'] ?? 'tech_localc_db'), 
     'username' => $_ENV['DB_USERNAME'] ?? 'demo_tech_user',
     'password' => $_ENV['DB_PASSWORD'] ?? 'demo_tech.pass',
-    'charset' => 'utf8mb4', 
+    'charset' => 'utf8',
 
     // Опции кэширования схемы для продакшена
     // 'enableSchemaCache' => YII_ENV_PROD,

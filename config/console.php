@@ -31,7 +31,7 @@ $config = [
             'db' => 'db',
             'tableName' => '{{%queue}}',
             'mutex' => [
-                'class' => \yii\mutex\MysqlMutex::class,
+                'class' => \yii\mutex\PgsqlMutex::class,
             ],
         ],
         'log' => [

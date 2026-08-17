@@ -1,6 +1,6 @@
 ## 🛠 Технологический стек
 *   **Backend**: PHP 8.4 (FPM) + Yii 2.0.55
-*   **Database**: MySQL 8.4
+*   **Database**: PostgreSQL 17
 *   **Web-server**: Nginx 1.29 (Alpine)
 *   **Окружение**: Docker Compose + Makefile
 *   **Тестирование**: PHPUNIT

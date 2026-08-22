@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace app\eventHandlers; 
 
-use Yii;
 use app\events\BookEvent;
-use app\models\AuthorSubscription;
 use app\jobs\SendNotificationJob;
-use yii\web\Session;
+use app\jobs\SendSmsNotificationJob;
+use app\models\AuthorSubscription;
 use yii\queue\db\Queue;
+use yii\web\Session;
 
 class NotificationHandler
 {
@@ -59,5 +59,16 @@ class NotificationHandler
 
         // Информируем пользователя через Flash-сообщение
         $this->session->addFlash('success', "[Очередь] Задача на отправку уведомлений добавлена в очередь (ID задачи: {$jobId}). Письма будут отправлены в фоновом режиме на адреса: <em>{$emailList}</em>");
+
+        // Отправка SMS через SMS Pilot 
+        // Имитируем, что у нас есть телефоны подписчиков в модели AuthorSubscription
+        $phones = ['+79991112233', '+79992223344']; // Тестовые номера
+
+        if (count($phones) > 0) {
+            $this->queue->push(new SendSmsNotificationJob([
+                'bookId' => (int)$book->id,
+            ]));
+            $this->session->addFlash('info', "[Очередь] Задача на массовую СМС-рассылку добавлена в очередь.");
+        }
     }
 }
